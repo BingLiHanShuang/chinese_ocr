@@ -16,6 +16,7 @@
 
 3、程序运行方式：
 （1）下载模型“model.zip”：https://pan.baidu.com/s/1Q0dPSKILNxPMDn7i2VIhow
+（或不使用百度云：https://d.pcs.baidu.com/file/8c755e26ce17286ed911405a7644f73f?fid=4031771572-250528-760858459813394&dstime=1544602011&rt=sh&sign=FDtAERVY-DCb740ccc5511e5e8fedcff06b081203-GHzypluGZoBNdm99UChQOUdYJJ0%3D&expires=8h&chkv=1&chkbd=0&chkpc=et&dp-logid=8017096450883646029&dp-callid=0&shareid=3190055425&r=806607689）
 （2）将“model.zip”中的“checkpoint”、“log”、“mnist”三个文件夹与装有测试数据集的“test_data”个文件夹、.py文件放在同一目录下；
 （3）命令行进入该目录，并输入：python2 table_choose.py；
 （4）等待一段时间，结果保存在该目录下的“try1010.csv”文件中。
