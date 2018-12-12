@@ -15,18 +15,18 @@
 （7）Python2.7 numpy模块、PIL模块、logging模块、pickle模块、os模块、random模块、time模块、matplotlib模块、math模块、csv模块
 
 3、程序运行方式：
-（1）将“模型”中的“checkpoint”、“log”、“mnist”三个文件夹与装有测试数据集的“test_data”个文件夹、.py文件放在同一目录下；
-（2）命令行进入该目录，并输入：python2 table_choose.py；
-（3）等待一段时间，结果保存在该目录下的“try1010.csv”文件中。
+（1）下载模型“model.zip”：https://pan.baidu.com/s/1Q0dPSKILNxPMDn7i2VIhow
+（2）将“model.zip”中的“checkpoint”、“log”、“mnist”三个文件夹与装有测试数据集的“test_data”个文件夹、.py文件放在同一目录下；
+（3）命令行进入该目录，并输入：python2 table_choose.py；
+（4）等待一段时间，结果保存在该目录下的“try1010.csv”文件中。
 
-4、项目调用结构图：见当前目录下“项目调用结构图.jpg”
-     程序流程图：见当前目录下“程序流程图.jpg”
+4、项目调用结构图：见当前目录下“Project_call_structure_diagram.jpg”
+     程序流程图：见当前目录下“Program_flow_chart.jpg”
 
 5、算法详细介绍：
-如“程序流程图.jpg”所示，该算法的主体思路是：通过对旋转、平移校正的表格用开操作提取网格，获取各信息所在的矩形位置；根据各信息对应的大致中心坐标筛选出对应的矩形，进行文字分割后，将汉字、ABO字母、数字分别输入卷积神经网络进行识别，得到的结果进行校验后即写入CSV文件。
+如“Program_flow_chart.jpg”所示，该算法的主体思路是：通过对旋转、平移校正的表格用开操作提取网格，获取各信息所在的矩形位置；根据各信息对应的大致中心坐标筛选出对应的矩形，进行文字分割后，将汉字、ABO字母、数字分别输入卷积神经网络进行识别，得到的结果进行校验后即写入CSV文件。
 程序主要分成九个Python文件：ABO_mix.py实现的是基于卷积神经网络的手写ABO字母识别，chinese_ocr.py实现的是基于卷积神经网络的手写汉字识别，chinese_out.py实现的是对手写汉字、字母的分割，chinese_out_jiguan.py实现的是对手写汉字（籍贯部分）的分割，mnist_recognize.py实现的是基于卷积神经网络的手写数字识别，num_out.py实现的是对手写数字的分割，time_out.py实现的是对手写时间数字的分割，time_recognize.py实现的是基于卷积神经网络的手写时间数字识别，table_choose.py实现的是表格预处理、函数调用与识别结果的写入。
 
 模型的主函数位于table_choose.py，基于程序流程图，此处对算法的具体思路进行介绍：
 算法始于table_choose.py表格预处理，预处理后对各要求信息进行识别。性别、民族、血型的识别都先通过chinese_out.py进行汉字、字母分割，其中血型部分进入ABO_mix.py进行ABO字母识别，民族和性别信息则进入chinese_ocr.py进行手写汉字识别；籍贯的识别通过chinese_out_jiguan.py进行汉字（籍贯部分）分割，而后也进入chinese_ocr.py进行手写汉字识别；体重的识别通过num_out.py进行数字分割，之后进入mnist_recognize.py进行手写数字识别；高中、大专、本科、研究生、其它起止时间的识别则先通过time_out.py进行时间数字分割，再进入time_recognize.py进行手写时间数字识别；高中、大专、本科、研究生是否毕业部分的信息通过table_choose.py对“是”“否”框的均值判断得出结论；其余部分的识别暂时注释。table_choose.py结果写入部分将所有识别到的信息汇总，写入CSV文件。
-具体内容参照“参赛代码及关键环节注译”中的程序注释。
 
